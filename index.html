@@ -1,0 +1,754 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>VR YM</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+</head>
+<style>
+    @font-face {
+        font-family: 'AGENCYB';
+        src: url("font/AGENCYB.TTF");
+    }
+
+    .videopage {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    .video-container {
+        position: absolute;
+        padding-bottom: 56.25%;
+        padding-top: 30px;
+        height: 0;
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .video-container iframe,
+    .video-container object,
+    .video-container embed {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .videoCover {
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: rgba(0, 27, 34, .8);
+        width: 100%;
+        height: 100%;
+    }
+
+    .vrlogo {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 40%;
+        height: 100%;
+        /* background: rgb(0, 27, 34); */
+        /* 三角形
+         border-color: rgb(29, 29, 29) transparent transparent transparent;
+        border-style: solid solid solid none;
+        border-width: 85vw; */
+    }
+
+    .logo {
+        position: absolute;
+        top: 3%;
+        right: 1%;
+    }
+
+    .logo figure {
+        width: 7rem;
+        height: 7rem;
+        overflow: hidden;
+    }
+
+    .logo figure img {
+        height: 100%;
+        width: 100%;
+        object-fit: contain;
+    }
+
+    .vrlogo h2 {
+        font-size: 3.6rem;
+        color: #fff;
+        font-family: '微軟正黑體';
+        padding: 8%;
+        margin-top: 90%;
+    }
+
+    .downWord {
+        text-align: right;
+        padding-right: 20%;
+    }
+
+    .downWordText {
+        font-size: 1rem;
+        color: #fff;
+    }
+
+    .fa-chevron-down {
+        position: absolute;
+        font-size: .8rem;
+        color: #fff;
+        padding-left: 1%;
+        bottom: 4%;
+        animation: .3s move infinite alternate;
+    }
+
+    @keyframes move {
+
+        to {
+            bottom: 3.5%
+        }
+
+        ;
+    }
+
+    /*---vrintro---*/
+    .vrintro {
+        background: rgb(0, 27, 34);
+    }
+
+    .container {
+        position: relative;
+    }
+
+    .vrintro h2 {
+        font-family: 'AGENCYB';
+        color: #7cb1bf;
+        font-size: 4rem;
+        padding-top: 15%;
+    }
+
+    .dot {
+        position: absolute;
+        left: -5rem;
+        width: 1rem;
+        height: 1rem;
+        border-radius: 50%;
+        background: #7cb1bf;
+    }
+
+    .dot_location1 {
+        top: 7%;
+
+    }
+
+    .dot_location2 {
+        top: 50%;
+        left: 33rem;
+        background: #e64646;
+        width: 1.5rem;
+        height: 1.5rem;
+        box-shadow: 2px 3px 10px #ccc;
+
+    }
+
+    .dot_location3 {
+        top: 42%;
+    }
+
+    .dot_location4 {
+        top: 64%;
+    }
+
+    .dot_location5 {
+        top: 85%;
+    }
+
+    .line {
+        width: 80%;
+        height: 1px;
+        margin: 5% auto;
+        background: #7cb1bf;
+    }
+
+    .mapArea_p {
+        font-size: 2rem;
+        color: #fff;
+        font-family: 'AGENCYB', '微軟正黑體';
+
+    }
+
+    .news,
+    .where,
+    .havewhat,
+    .openhour,
+    .contact {
+        text-align: center;
+    }
+
+    .mapArea {
+        visibility: hidden;
+    }
+
+    .mapArea figure {
+        width: 70%;
+        height: 60%;
+        overflow: hidden;
+        margin-left: 14%;
+    }
+
+    .mapArea figure img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .itemArea {
+        display: flex;
+        justify-content: space-evenly;
+        visibility: hidden;
+    }
+
+    .di_no {
+        display: none;
+
+    }
+
+    .item {
+        width: 10rem;
+        height: 10rem;
+        border-radius: 50%;
+        /* border: .3rem solid #fff; */
+        text-align: center;
+        line-height: 10rem;
+    }
+
+    .item_p {
+        position: absolute;
+        font-size: 1rem;
+        color: #fff;
+        font-family: 'AGENCYB', '微軟正黑體';
+        top: 0;
+    }
+
+    .item_p_Lo1 {
+        left: 11.4%;
+        font-size: 2rem;
+    }
+
+    .item_p_Lo2 {
+        left: 33.4%;
+        font-size: 2rem;
+        line-height: 2rem;
+        top: 21%;
+    }
+
+    .item_p_Lo3 {
+        left: 57.4%;
+        font-size: 1.5rem;
+        line-height: 2rem;
+        top: 28%;
+    }
+
+    .item_p_Lo4 {
+        left: 79.5%;
+        font-size: 1.5rem;
+        line-height: 2rem;
+        top: 30%;
+    }
+
+    .item_p_Lo5 {
+        left: 83.7%;
+    }
+
+    .circular-chart {
+        display: block;
+        /* margin: 10px auto; */
+        max-width: 100%;
+        /* max-height: 250px; */
+    }
+
+    .cirColor {
+        stroke: rgb(124, 177, 191);
+    }
+
+    .circle-bg {
+        fill: none;
+        stroke: #eee;
+        stroke-width: 0.2rem;
+    }
+
+    .circle {
+        fill: none;
+        stroke-width: 1.8px;
+        stroke-linecap: round;
+        animation: progress 4s ease-out forwards;
+    }
+
+    /* .percentage {
+        fill: none;
+        stroke: rgb(255, 255, 255);
+        font-family: '微軟正黑體';
+        font-size: 0.2em;
+        text-anchor: middle;
+    } */
+
+    @keyframes progress {
+        0% {
+            stroke-dasharray: 0 100;
+        }
+    }
+
+    .openhourArea a:hover {
+
+        color: #7cb1bf;
+    }
+
+    .openhourArea {
+        visibility: hidden;
+    }
+
+    .openhourArea a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 2rem;
+        font-family: 'AGENCYB', '微軟正黑體';
+    }
+
+    .openhourArea p {
+        color: #fff;
+        margin-top: 3%;
+        font-size: 1.2rem;
+        font-family: 'AGENCYB', '微軟正黑體';
+    }
+
+    .contantFont {
+        font-size: 2rem;
+        color: #fff;
+
+    }
+
+    .contactArea {
+        visibility: hidden;
+    }
+
+    .contact {
+        background: #001b22;
+        height: max-content;
+    }
+
+    .conW {
+        width: 80%;
+        padding-left: 26%;
+        margin: 4% auto;
+        text-align: left;
+    }
+
+    .conW span {
+        color: #fff;
+        font-size: 2rem;
+        padding-left: 5%;
+        font-family: 'AGENCYB', '微軟正黑體';
+    }
+
+
+
+    @media screen and (max-width:375px) {
+        .vrlogo {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            /* background: rgb(0, 27, 34); */
+        }
+
+        .videopage {
+            position: relative;
+            width: 100%;
+            height: 32vh;
+            overflow: hidden;
+        }
+
+        .vrlogo h2 {
+            font-size: 2rem;
+            color: #fff;
+            font-family: '微軟正黑體';
+            padding: 7%;
+            margin-top: 0;
+        }
+
+        .vrintro h2 {
+            font-family: 'AGENCYB';
+            color: #7cb1bf;
+            font-size: 2rem;
+            padding-top: 15%;
+        }
+
+        .downWordText {
+            font-size: 1rem;
+            color: #fff;
+            padding-top: 29%;
+        }
+
+        .fa-chevron-down {
+            position: absolute;
+            font-size: .8rem;
+            color: #fff;
+            padding-left: 1%;
+            bottom: 4%;
+            animation: .3s move infinite alternate;
+        }
+
+        @keyframes move {
+
+            to {
+                bottom: 3.5%
+            }
+
+            ;
+        }
+
+        .mapArea_p {
+            font-size: 1rem;
+            color: #fff;
+            font-family: 'AGENCYB', '微軟正黑體';
+        }
+
+        .itemArea {
+            display: flex;
+            justify-content: space-evenly;
+            visibility: visible;
+        }
+
+        .itemArea {
+            display: block;
+            /* justify-content: space-evenly; */
+            visibility: visible;
+            padding-left: 25%;
+        }
+
+        .item_p {
+            position: absolute;
+            font-size: 1rem;
+            color: #fff;
+            font-family: 'AGENCYB', '微軟正黑體';
+        }
+
+        .item_p_Lo1 {
+            top: 36%;
+            font-size: 2rem;
+            left: 36%;
+        }
+
+        .item_p_Lo2 {
+            top: 46.5%;
+            left: 32%;
+            font-size: 2rem;
+        }
+
+        .item_p_Lo3 {
+            top: 55.2%;
+            left: 34.8%;
+            font-size: 1.5rem;
+        }
+
+        .item_p_Lo4 {
+            top: 63.5%;
+            left: 33.5%;
+            font-size: 1.5rem;
+        }
+
+        .item_p_Lo5 {
+            top: 57%;
+            left: 40%;
+        }
+
+        .openhourArea {
+            visibility: visible;
+            margin: 0 9%;
+        }
+
+        .contactArea {
+            visibility: visible;
+        }
+
+        .conW {
+            width: 80%;
+            padding-left: 0;
+            margin: 4% auto;
+            text-align: left;
+        }
+
+        .conW span {
+            color: #fff;
+            font-size: 1rem;
+            padding-left: 5%;
+        }
+
+        .dot_location2 {
+            top: 22.5%;
+            left: 11rem;
+            background: #e64646;
+            width: 0.5rem;
+            height: 0.5rem;
+            box-shadow: none;
+            animation: dotmove .3s infinite alternate;
+        }
+
+        @keyframes dotmove {
+
+            to {
+
+                top: 22.3%;
+            }
+
+            ;
+        }
+    }
+</style>
+
+<body>
+    <div class="videopage">
+        <div class="video-container">
+            <iframe
+                src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2F142965709681241%2Fvideos%2F144340016210477%2F&show_text=0&width=560&autoplay=true&loop=infinity"
+                width="560" height="315" style="border:none;overflow:hidden" scrolling="no" frameborder="0"
+                allowTransparency="true" allowFullScreen="true"></iframe>
+        </div>
+        <div class="videoCover"></div>
+        <div class="vrlogo">
+            <div class="logo">
+                <!-- <figure><img src="images/logo.png" alt=""></figure> -->
+            </div>
+            <h2 class="animated 1 slideInDown">陽明大學虛擬實境中心</h2>
+            <div class="downWord">
+                <p class="downWordText">scroll<i class="fas fa-chevron-down "></i></p>
+            </div>
+        </div>
+    </div>
+    <div class="vrintro">
+        <div class="container">
+            <div class="news">
+                <!-- <div class="dot dot_location1"></div> -->
+                <h2>WHAT NEW ?</h2>
+                <div class="line"></div>
+                <div class="mapArea ">
+
+                    <p class="mapArea_p">VR中心開放參訪囉!歡迎預約!!</p>
+                    <p class="mapArea_p">VR中心開課囉!「虛擬實境理論與實務」</p>
+                </div>
+                <div class="line"></div>
+            </div>
+            <div class="where">
+                <!-- <div class="dot dot_location1"></div> -->
+                <h2>WHERE ARE WE ?</h2>
+                <div class="line"></div>
+                <div class="mapArea ">
+                    <div class="dot dot_location2 animate infinite bounce"></div>
+                    <figure><img src="images/map.jpg" alt=""></figure>
+                    <p class="mapArea_p">醫學館 一樓 虛擬實境體驗及實作中心</p>
+                </div>
+                <div class="line"></div>
+            </div>
+            <div class="havewhat">
+                <!-- <div class="dot dot_location3"></div> -->
+                <h2>WHAT DO WE HAVE ?</h2>
+                <div class="allItem">
+                    <div class="line"></div>
+                    <div class="itemArea">
+                        <div class="item">
+                            <svg viewBox="0 0 36 36" class="circular-chart cirColor">
+                                <path class="circle-bg" d="M18 2.0845
+                                        a 15.9155 15.9155 0 0 1 0 31.831
+                                        a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                <path class="circle" stroke-dasharray="100, 100" d="M18 2.0845
+                                        a 15.9155 15.9155 0 0 1 0 31.831
+                                        a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                <!-- <text x="18" y="20.35" class="percentage" style="font-size:16px;">HTC VIVE</text> -->
+                            </svg>
+
+                            <p class="item_p item_p_Lo1">HTC VIVE</p>
+
+                        </div>
+                        <div class="item">
+                            <svg viewBox="0 0 36 36" class="circular-chart cirColor">
+                                <path class="circle-bg" d="M18 2.0845
+                                                a 15.9155 15.9155 0 0 1 0 31.831
+                                                a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                <path class="circle" stroke-dasharray="100, 100" d="M18 2.0845
+                                                a 15.9155 15.9155 0 0 1 0 31.831
+                                                a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                <!-- <text x="18" y="20.35" class="percentage">高顯卡電腦配備</text> -->
+                            </svg>
+                            <p class="item_p item_p_Lo2">google<br>Cardboard</p>
+                        </div>
+                        <div class="item">
+                            <svg viewBox="0 0 36 36" class="circular-chart cirColor">
+                                <path class="circle-bg" d="M18 2.0845
+                                                a 15.9155 15.9155 0 0 1 0 31.831
+                                                a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                <path class="circle" stroke-dasharray="100, 100" d="M18 2.0845
+                                                a 15.9155 15.9155 0 0 1 0 31.831
+                                                a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                <!-- <text x="18" y="20.35" class="percentage">4K顯示投影布幕</text> -->
+                            </svg>
+                            <p class="item_p item_p_Lo3">高階顯卡<br>電腦配備</p>
+                        </div>
+                        <div class="item">
+                            <svg viewBox="0 0 36 36" class="circular-chart cirColor">
+                                <path class="circle-bg" d="M18 2.0845
+                                                a 15.9155 15.9155 0 0 1 0 31.831
+                                                a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                <path class="circle" stroke-dasharray="100, 100" d="M18 2.0845
+                                                a 15.9155 15.9155 0 0 1 0 31.831
+                                                a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                <!-- <text x="18" y="20.35" class="percentage">360度環繞攝影機</text> -->
+                            </svg>
+                            <p class="item_p item_p_Lo4">360度環繞<br>攝影機</p>
+                        </div>
+                        <!--<div class="item">
+                            <svg viewBox="0 0 36 36" class="circular-chart cirColor">
+                                <path class="circle-bg" d="M18 2.0845
+                                                a 15.9155 15.9155 0 0 1 0 31.831
+                                                a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                <path class="circle" stroke-dasharray="100, 100" d="M18 2.0845
+                                                a 15.9155 15.9155 0 0 1 0 31.831
+                                                a 15.9155 15.9155 0 0 1 0 -31.831" />
+                               <text x="18" y="20.35" class="percentage">CARDBOARD</text> 
+                            </svg>
+                            <p class="item_p item_p_Lo5">CARDBOARD</p>
+                        </div>-->
+                    </div>
+                    <div class="line"></div>
+                </div>
+
+            </div>
+            <div class="openhour">
+                <!-- <div class="dot dot_location4"></div> -->
+                <h2>WHEN DO WE OPEN ?</h2>
+                <div class="line"></div>
+                <div class="openhourArea">
+                    <a href="" target="_block">前往預約單</a>
+                    <p>填寫完畢後請寄至nymu.vrc@gmail.com</p>
+                </div>
+                <div class="line"></div>
+
+            </div>
+            <div class="contact">
+                <!-- <div class="dot dot_location5"></div> -->
+                <h2>HOW CAN YOU CONTACT US ?</h2>
+                <div class="line"></div>
+                <div class="contactArea">
+                    <div class="phoneArea conW"><i class="fas fa-phone contantFont"></i><span>(02)2826-7000轉5927</span>
+                    </div>
+                    <div class="mailArea conW"> <i
+                            class="far fa-envelope-open contantFont"></i><span>nymu.vrc@gmail.com</span>
+                    </div>
+                    <div class="fbArea conW"> <a
+                            href="https://www.facebook.com/%E9%99%BD%E6%98%8E%E5%A4%A7%E5%AD%B8%E8%99%9B%E6%93%AC%E5%AF%A6%E5%A2%83%E4%B8%AD%E5%BF%83-142965709681241/"
+                            target="_block"><i
+                                class="fab fa-facebook-square contantFont"></i><span>陽明大學虛擬實境中心</span></a>
+                    </div>
+
+
+                </div>
+                <div class="line"></div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+
+    <script>
+        //contact area
+
+        function isMobile() {
+
+            try { document.createEvent("TouchEvent"); return true; }
+
+            catch (e) { return false; }
+
+        }
+        if (isMobile()) {
+            $(window).on('scroll', function () {
+                var scrollTop = $(this).scrollTop();
+                console.log(scrollTop)
+
+
+                if (scrollTop > 0) {
+                    $('.mapArea').css('visibility', 'visible').removeClass('animated 1 slideInLeft ');
+                }
+                if (scrollTop > 0) {
+                    $('.itemArea').css('visibility', 'visible').removeClass('animated 1 slideInLeft');
+                }
+                if (scrollTop > 0) {
+                    $('.openhourArea').css('visibility', 'visible').removeClass('animated 1 slideInLeft ');
+                }
+                if (scrollTop > 0) {
+                    $('.contactArea').css('visibility', 'visible').removeClass('animated 1 slideInLeft ');
+                }
+
+
+
+
+            });
+        }
+
+        else {
+            $(window).on('scroll', function () {
+                var scrollTop = $(this).scrollTop();
+                console.log(scrollTop)
+
+
+                if (scrollTop > 500) {
+                    $('.mapArea').css('visibility', 'visible').addClass('animated 1 slideInLeft ');
+                }
+                if (scrollTop > 1400) {
+                    $('.itemArea').css('visibility', 'visible').addClass('animated 1 slideInLeft');
+                }
+                if (scrollTop > 2000) {
+                    $('.openhourArea').css('visibility', 'visible').addClass('animated 1 slideInLeft ');
+                }
+                if (scrollTop > 2600) {
+                    $('.contactArea').css('visibility', 'visible').addClass('animated 1 slideInLeft ');
+                }
+
+
+
+
+            });
+        }
+
+
+
+
+
+    </script>
+
+</body>
+
+</html>
